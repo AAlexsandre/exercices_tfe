@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+}
+#drumHolder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.pad{
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+    cursor: pointer;
+    text-align: center;
+}
+
+p{
+    font-size: larger;
+    font-family: fantasy;
+}
