@@ -1,15 +1,39 @@
 function createPads() {
     let boardPad = document.getElementById("drumHolder");
     let pad;
+    let lettre;
     let description;
-    for (let i = 0; i < 9; ++i) {
+
+    for (let i = 0; i < tabSounds.length; ++i) {
         pad = document.createElement("div");
-        pad.setAttribute("id", "pad" + i);
-        pad.setAttribute("class", "pad");
-        pad.setAttribute("onclick", 'playAudio(this)');
+        pad.id = "pad" + i;
+        pad.className = "pad";
+
+        pad.addEventListener("click", (e) => {
+            if (e.originalTarget.id == "") {
+                playAudio(e.target.parentNode);
+
+            } else {
+                playAudio(e.originalTarget);
+            }
+        });
+
+        // document.addEventListener('keydown', (e) => {
+        //     if (e.key === "a") {
+        //         playAudio(e.originalTarget);
+        //     } else if (e.key === "b") {
+        //         playAudio(e.originalTarget);
+        //     }
+        // });
+
         boardPad.appendChild(pad);
+        lettre = document.createElement("p");
         description = document.createElement("p");
-        description.innerHTML = arrayData[i].lettre;
+
+        lettre.innerHTML = tabSounds[i].lettre;
+        description.innerHTML = tabSounds[i].description;
+
+        pad.appendChild(lettre);
         pad.appendChild(description);
         addSounds(pad, i);
     }
@@ -22,11 +46,11 @@ function addSounds(pad, i) {
     let source = document.createElement("source");
     pad.appendChild(audio);
     audio.appendChild(source);
-    audio.setAttribute("id", "sound" + i);
-    source.setAttribute("src", "ressources/" + arrayData[i].src);
+    audio.id = "sound" + i;
+    source.src = "ressources/" + tabSounds[i].src;
 }
 
 function playAudio(padSound) {
-    document.getElementById(padSound.childNodes[1].id).play();
-    padSound.style.opacity = "50%";
+    document.getElementById(padSound.childNodes[2].id).play();
+    padSound.style.backgroundColor = "black";
 }
