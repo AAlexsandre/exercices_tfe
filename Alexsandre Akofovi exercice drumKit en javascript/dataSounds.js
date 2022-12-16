@@ -1,47 +1,47 @@
 const tabSounds = [
     {
         src: "mixkit-arcade-retro-game-over-213.wav",
-        lettre: "A",
+        lettre: "a",
         description: "arcade retro game over"
     },
     {
         src: "mixkit-cartoon-failure-piano-473.wav",
-        lettre: "B",
+        lettre: "b",
         description: "cartoon failure piano"
     },
     {
         src: "mixkit-cool-guitar-riff-2321.wav",
-        lettre: "C",
+        lettre: "c",
         description: "guitar riff"
     },
     {
         src: "mixkit-fast-small-sweep-transition-166.wav",
-        lettre: "D",
+        lettre: "d",
         description: "fast small sweep transition"
     },
     {
         src: "mixkit-happy-guitar-chords-2319.wav",
-        lettre: "E",
+        lettre: "e",
         description: "happy guitar chords"
     },
     {
         src: "mixkit-short-guitar-riff-2322.wav",
-        lettre: "F",
+        lettre: "f",
         description: "short guitar riff"
     },
     {
         src: "mixkit-short-guitar-strum-2318.wav",
-        lettre: "G",
+        lettre: "g",
         description: "short guitar strum"
     },
     {
         src: "mixkit-western-guitar-drum-single-2333.wav",
-        lettre: "H",
+        lettre: "h",
         description: "western guitar drum single"
     },
     {
         src: "piano-sound.mp3",
-        lettre: "I",
+        lettre: "i",
         description: "piano sound"
     }
 ]

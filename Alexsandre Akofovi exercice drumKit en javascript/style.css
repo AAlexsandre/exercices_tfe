@@ -19,7 +19,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #556B2f;
     cursor: pointer;
     border-radius: 10px;
 }
@@ -35,4 +34,12 @@ p {
 
 p:first-child {
     font-size: 2em;
+}
+
+.playing {
+    background-color: black;
+}
+
+.notPlaying {
+    background-color: #556B2f;
 }

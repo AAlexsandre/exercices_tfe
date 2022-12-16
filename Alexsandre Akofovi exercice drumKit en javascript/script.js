@@ -4,27 +4,22 @@ function createPads() {
     let lettre;
     let description;
 
+
     for (let i = 0; i < tabSounds.length; ++i) {
         pad = document.createElement("div");
         pad.id = "pad" + i;
         pad.className = "pad";
+        pad.className += " notPlaying";
 
         pad.addEventListener("click", (e) => {
             if (e.originalTarget.id == "") {
+                console.log(e);
                 playAudio(e.target.parentNode);
 
             } else {
                 playAudio(e.originalTarget);
             }
         });
-
-        // document.addEventListener('keydown', (e) => {
-        //     if (e.key === "a") {
-        //         playAudio(e.originalTarget);
-        //     } else if (e.key === "b") {
-        //         playAudio(e.originalTarget);
-        //     }
-        // });
 
         boardPad.appendChild(pad);
         lettre = document.createElement("p");
@@ -37,6 +32,16 @@ function createPads() {
         pad.appendChild(description);
         addSounds(pad, i);
     }
+
+    document.addEventListener("keydown", function (event) {
+        for (let j = 0; j < tabSounds.length; ++j) {
+            if (event.key == tabSounds[j].lettre) {
+                pad.id = "pad" + j;
+                pad.childNodes[2].id = "sound"+j;
+                playAudio(pad);
+            };
+        }
+    });
 }
 
 createPads();
@@ -51,6 +56,22 @@ function addSounds(pad, i) {
 }
 
 function playAudio(padSound) {
-    document.getElementById(padSound.childNodes[2].id).play();
-    padSound.style.backgroundColor = "black";
+    let audio = document.getElementById(padSound.childNodes[2].id);
+    console.log(padSound);
+    audio.play();
+
+    let isPlaying;
+    let reading = setInterval(function () {
+        isPlaying = notDoneYet(audio);
+        padSound.className = "pad playing";
+
+        if (isPlaying == audio.duration) {
+            padSound.className = "pad notPlaying";
+            clearInterval(reading);
+        }
+
+    }, audio.duration);
 }
+
+
+function notDoneYet(audio) { return audio.currentTime }
