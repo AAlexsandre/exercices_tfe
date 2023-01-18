@@ -1,0 +1,124 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  padding: 0;
+  font-family: sans-serif;
+}
+
+button {
+  cursor: pointer; 
+  width: 5em;
+  height: 2em;
+  border-radius: 2px;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.div-box{
+  border: solid black 2px;
+  border-radius: 0.2em;
+  padding: 1em;
+  display: flex;
+}
+
+.div-box i{
+  display: flex;
+  height: 1px;
+  width: 100%;
+  background: #0e2431;
+  margin: 2px;
+}
+
+.div-box:nth-child(0) {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.div-box:nth-child(1) {
+  transition: transform 0.2s ease-in-out;
+}
+
+.div-box:nth-child(2) {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+.div-box:hover i {
+  background-color: lightskyblue;
+}
+
+.burger.open i{
+  transform: rotate(-45deg);
+}
+
+
+.box-sprite{
+  position: relative;
+  background:url("ryu-sprite-demo.png");
+  width: 280px;
+  height: 180px;
+  animation: animate 3.5s steps(46) infinite ;
+  background-repeat: no-repeat;
+}
+
+
+@keyframes animate {
+  from {
+    background-position: -60px -60px;
+  }
+
+  to{
+    background-position: -60px -12342px;
+  }
+}
+
+
+.rainbow-text{
+  background: linear-gradient(to left, red, green , blue);
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 4s linear infinite;
+  background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+  0%,100% {
+      background-position: 0;
+  }
+
+  50% {
+      background-position: 100%;
+  }
+}
+
+#sidebar{
+  display: none;
+}
+#sidebar.open{
+  display: block;
+}
+
+
+
+#modal-element.modal-overlay{
+  display: none;
+}
+#modal-element.modal-overlay.open{
+  display: block;
+}
