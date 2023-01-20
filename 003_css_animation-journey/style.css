@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -13,13 +15,15 @@ ul {
 body {
   padding: 0;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 button {
-  cursor: pointer; 
-  width: 5em;
-  height: 2em;
-  border-radius: 2px;
+  cursor: pointer;
+  background-color: #5bb923;
+  border: black solid 2px;
+  border-radius: 5px;
 }
 
 main {
@@ -29,96 +33,229 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
-.div-box{
-  border: solid black 2px;
-  border-radius: 0.2em;
-  padding: 1em;
+.div-box {
+  position: absolute;
   display: flex;
+  justify-content: space-between;
+  width: 50vh;
 }
 
-.div-box i{
-  display: flex;
-  height: 1px;
+.head {
   width: 100%;
-  background: #0e2431;
-  margin: 2px;
+  display: flex;
+  justify-content: space-around;
+  border: solid black;
+  border-radius: 1em;
+  padding: 1em;
+  box-shadow: 10px 10px 10px 0 rgb(0 0 0 / 50%);
 }
 
-.div-box:nth-child(0) {
+#sidebarBtnToggle {
+  width: 50px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#modalBtn{
+  font-style: oblique;
+  font-weight: bolder;
+  font-size: 1em;
+  letter-spacing: 0.4em;
+}
+
+#modalBtn:hover{
+  color: white;
+}
+
+.burger i {
+  border: solid black 2px;
+  border-radius: 1em;
+  width: 100%;
+  transform-origin: 0% 0%;
+  transition: transform 5s ease-in;
+}
+
+i:nth-child(1) {
   transform-origin: 0% 0%;
   transition: transform 0.4s ease-in-out;
 }
 
-.div-box:nth-child(1) {
+i:nth-child(2) {
   transition: transform 0.2s ease-in-out;
 }
 
-.div-box:nth-child(2) {
+i:nth-child(3) {
   transform-origin: 0% 100%;
   transition: transform 0.4s ease-in-out;
 }
-.div-box:hover i {
-  background-color: lightskyblue;
+
+#sidebarBtnToggle.burger:hover i:nth-child(1), .open i:nth-child(1) {
+  width: 120%;
+  transform: rotate(28deg);
 }
 
-.burger.open i{
-  transform: rotate(-45deg);
+#sidebarBtnToggle.burger:hover i:nth-child(2), .open i:nth-child(2) {
+  transform: scaleY(0);
+}
+
+#sidebarBtnToggle.burger:hover i:nth-child(3), .open i:nth-child(3) {
+  width: 120%;
+  transform: rotate(-28deg);
+}
+
+#sidebarBtnToggle.open:hover i:nth-child(1){
+  width: 100%;
+  transform: rotate(0deg);
+}
+
+#sidebarBtnToggle.open:hover i:nth-child(2)  {
+  transform: scaleY(1);
+}
+
+#sidebarBtnToggle.open:hover i:nth-child(3){
+  width: 100%;
+  transform: rotate(0deg);
 }
 
 
-.box-sprite{
+#sidebar {
   position: relative;
-  background:url("ryu-sprite-demo.png");
+}
+
+#sidebar .content {
+  height: 100vh;
+  display: flex;
+  transform: translate(-100%);
+  transition: transform 0.4s ease-in-out;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  box-shadow: 10px 10px 10px 0 rgb(0 0 0 / 50%);
+  text-align: center;
+}
+
+#sidebar.open .content {
+  transform: translateX(0);
+}
+
+.box-sprite {
+  position: relative;
+  background: url("ryu-sprite-demo.png");
   width: 280px;
   height: 180px;
-  animation: animate 3.5s steps(46) infinite ;
+  animation: animate 3.5s steps(46) infinite;
   background-repeat: no-repeat;
 }
-
 
 @keyframes animate {
   from {
     background-position: -60px -60px;
   }
 
-  to{
+  to {
     background-position: -60px -12342px;
   }
 }
 
-
-.rainbow-text{
-  background: linear-gradient(to left, red, green , blue);
+.rainbow-text {
+  background-image: repeating-linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red, violet);
+  background-size: 500% 500%;
   background-clip: text;
   color: transparent;
-  animation: rainbow_animation 4s linear infinite;
-  background-size: 400% 100%;
+  font-size: 3em;
+  animation: rainbow_animation 8s ease infinite;
 }
 
 @keyframes rainbow_animation {
-  0%,100% {
-      background-position: 0;
+
+  0%,
+  100% {
+    background-position: 0;
   }
 
   50% {
-      background-position: 100%;
+    background-position: 100%;
   }
 }
 
-#sidebar{
+#modal-element.modal-overlay {
+  padding-top: 3em;
   display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
 }
-#sidebar.open{
-  display: block;
+
+#modal-element {
+  position: relative;
+  background-color: #fefefe;
+  animation-name: animatebottom;
+  animation-duration: 0.4s;
+  font-size: 1.2em;
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: -400px;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+#modal-element .modal {
+  background-color: white;
+  color: black;
+  margin: auto;
+  padding: 2em;
+  border: 7px double;
+  overflow: hidden;
+  margin: 5rem auto;
+  border-radius: 1em;
+  width: 60vh;
+  box-shadow: 15px 15px 15px 0 rgb(0 0 0 / 50%);
+}
+
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-header--title, .modal-body h3{
+  margin-bottom: 1em;
+}
+
+.modal-body{
+  text-align: center;
+}
+
+.modal-body h3{
+  color: brown;
+}
+
+#close-modal-btn {
+  width: 15px;
+  height: 15px;
+}
+
+#close-modal-btn:hover {
+  color: red;
+  cursor: pointer;
 }
 
 
 
-#modal-element.modal-overlay{
-  display: none;
-}
-#modal-element.modal-overlay.open{
+#modal-element.modal-overlay.open {
   display: block;
 }
