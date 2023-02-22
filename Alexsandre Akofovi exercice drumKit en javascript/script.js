@@ -11,13 +11,15 @@ function createPads() {
         pad.className = "pad";
         pad.className += " notPlaying";
 
+        
+
         pad.addEventListener("click", (e) => {
-            if (e.originalTarget.id == "") {
+            if (e.target.id == "") {
                 console.log(e);
                 playAudio(e.target.parentNode);
 
             } else {
-                playAudio(e.originalTarget);
+                playAudio(e.target);
             }
         });
 
