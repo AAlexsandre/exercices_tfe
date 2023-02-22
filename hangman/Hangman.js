@@ -50,9 +50,9 @@ export default class Hangman {
     }
 
     appenChild(game, clue, findWord, lifes, form, enterLetter) {
-        let found = false;
+        let found =false;
         // let finish = false;
-        let sizeImage = ["150px", "225px", "300px", "375px", "450px", "525x"];
+        let sizeImage = ["-75px","-150px", "-225px", "-300px", "-375px"];
         let index = 0;
         game.appendChild(clue);
         game.appendChild(findWord);
@@ -78,8 +78,11 @@ export default class Hangman {
                 if (found == false) {
                     this.chance--;
                     lifes.innerHTML = "Remaining lives : " + this.chance;
-                    document.getElementById("image").style.width = sizeImage[index];
+                    document.getElementById("image").style.backgroundPosition = sizeImage[index], "0px";
                     index++;
+                    if(this.chance == 1) {
+                        document.getElementById("image").style.backgroundPosition = "-450px", "0px";
+                    }
                 }
                 enterLetter.value = "";
                 found = false;
