@@ -18,7 +18,6 @@ export default class Hangman {
     }
 
     createElement(game) {
-
         let clue = document.createElement("p");
         let findWord = document.createElement("p");
         let placeLetter;
@@ -34,6 +33,17 @@ export default class Hangman {
         form.id = "inputForm";
         let enterLetter = document.createElement("input");
         this.renderComponent(game, clue, findWord, lifes, form, enterLetter);
+    
+        // Création du bouton Restart
+        let restartButton = document.createElement("button");
+        restartButton.innerHTML = "Restart";
+        restartButton.style.marginTop = "10px";
+        game.appendChild(restartButton);
+    
+        restartButton.addEventListener("click", () => {
+            // Recharge la page pour redémarrer le jeu avec un nouveau mot
+            location.reload();
+        });
     }
 
     renderComponent(game, clue, findWord, lifes, form, enterLetter) {
@@ -69,25 +79,42 @@ export default class Hangman {
                         found = true;
                         game.children[2].children[i].innerHTML = enterLetter.value;
                     }
-
-                    // if(game.children[2].children[i].innerHTML == "_ "){
-                    //     finish = false;
-                    // }
                 }
-
+        
                 if (found == false) {
                     this.chance--;
                     lifes.innerHTML = "Remaining lives : " + this.chance;
                     document.getElementById("image").style.backgroundPosition = sizeImage[index], "0px";
                     index++;
-                    if(this.chance == 1) {
+                    if (this.chance == 0) {
                         document.getElementById("image").style.backgroundPosition = "-450px", "0px";
+                    }
+                    if (this.chance === 0) {
+                        enterLetter.style.display = "none";
                     }
                 }
                 enterLetter.value = "";
                 found = false;
             }
-
+            this.checkWin();
         });
+        
     }
+
+    checkWin() {
+        let win = true;
+        for (let i = 0; i < this.word.sendTheLengthOfTheWorld(); ++i) {
+            if (document.getElementById(i).innerHTML == "_ ") {
+                win = false;
+            }
+        }
+    
+        if (win == true) {
+            document.getElementById("inputForm").style.display = "none";
+            let message = document.createElement("p");
+            message.innerHTML = "You won!";
+            document.getElementById("game").appendChild(message);
+        }
+    }
+    
 }

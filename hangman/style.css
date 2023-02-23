@@ -1,36 +1,36 @@
-body{
-    height: 100vh;
+body {
+    background-size: contain;
+    font-family: 'consolas', sans-serif;
+    margin-top: 2em;
 }
 
-#game{
-    height: 75%;
+main{
+    max-width: 500px;
+    margin: 0 auto;
+    border: double black 5px;
+}
+
+main #game {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 5px 20px 0.9px;
-    border-radius: 0.5em;
-
+    margin: 0.5em;
 }
 
+main div input {
+    height: var(--height);
+    font-family: var(--font-fam);
+    color: var(--color-dark);
+    font-size: 1rem;
+}
+
+
+
 #game #image {
-    position: relative;
     background-image: url(man.png);
     background-repeat: no-repeat;
     background-position: 0px 0px;
     height: 200px;
     width: 75px;
-    box-shadow: 5px 5px 20px 0.9px;
-    border-radius: 0.5em;
-    margin-bottom: 1em;
-}
-
-#game p{
-    margin: 0.5em;
-    font-size: 2em;
-}
-
-#game input{
-    text-align: center;
-    height: 2em;
 }
