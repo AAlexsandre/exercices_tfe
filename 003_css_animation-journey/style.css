@@ -163,25 +163,27 @@ i:nth-child(3) {
 }
 
 .rainbow-text {
-  background-image: repeating-linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red, violet);
-  background-size: 500% 500%;
-  background-clip: text;
-  color: transparent;
   font-size: 3em;
-  animation: rainbow_animation 8s ease infinite;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 400%;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  animation: rainbow 10s linear infinite;
 }
 
-@keyframes rainbow_animation {
-
-  0%,
-  100% {
-    background-position: 0;
+@keyframes rainbow {
+  0% {
+    background-position: 0%;
   }
-
   50% {
     background-position: 100%;
   }
+  100% {
+    background-position: 0%;
+  }
 }
+
+
 
 #modal-element.modal-overlay {
   padding-top: 3em;
